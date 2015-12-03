@@ -1,4 +1,4 @@
-package com.esh.docrepository.rs.model;
+package com.esh.docrepository.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

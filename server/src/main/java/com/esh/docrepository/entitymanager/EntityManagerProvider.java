@@ -1,4 +1,4 @@
-package com.esh.docrepository.rs.entitymanager;
+package com.esh.docrepository.entitymanager;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;

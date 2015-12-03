@@ -1,8 +1,8 @@
-package com.esh.docrepository.rs.dao;
+package com.esh.docrepository.dao;
 
 import java.io.Serializable;
 
-import com.esh.docrepository.rs.entitymanager.EntityManagerProvider;
+import com.esh.docrepository.entitymanager.EntityManagerProvider;
 
 public class AbstractDao<T> extends EntityManagerProvider {
 

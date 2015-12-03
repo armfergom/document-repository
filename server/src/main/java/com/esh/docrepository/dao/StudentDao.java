@@ -1,6 +1,6 @@
-package com.esh.docrepository.rs.dao;
+package com.esh.docrepository.dao;
 
-import com.esh.docrepository.rs.model.Student;
+import com.esh.docrepository.model.Student;
 
 public interface StudentDao {
 

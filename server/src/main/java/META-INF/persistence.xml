@@ -9,7 +9,7 @@
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		
 		<!-- Entities -->
-		<class>com.esh.docrepository.rs.model.Student</class>
+		<class>com.esh.docrepository.model.Student</class>
 		
 		<!-- Properties -->
 		<properties>

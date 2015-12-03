@@ -1,13 +1,13 @@
-package com.esh.docrepository.rs;
+package com.esh.docrepository.resources;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.esh.docrepository.rs.dao.StudentDao;
-import com.esh.docrepository.rs.dao.StudentDaoImpl;
-import com.esh.docrepository.rs.model.Student;
+import com.esh.docrepository.dao.StudentDao;
+import com.esh.docrepository.dao.StudentDaoImpl;
+import com.esh.docrepository.model.Student;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
