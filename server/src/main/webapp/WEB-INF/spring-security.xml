@@ -1,0 +1,41 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<!-- to activate annotations in beans already registered in the ApplicationContext -->
+	<context:annotation-config />
+
+	<!-- scans packages to find and register beans within the application context -->
+	<context:component-scan base-package="com.jersey.series.spring.security" />
+
+	<security:http auto-config="true" use-expressions="true">
+		<security:intercept-url pattern="/docrepo/**" access="hasRole('ROLE_USER')"/>
+	</security:http>
+
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:password-encoder ref="bcryptPasswordEncoder" />
+			<security:jdbc-user-service
+				data-source-ref="dataSource"
+				users-by-username-query="select username, password, enabled from authentication.users where username=?"
+				authorities-by-username-query="select username, role from authentication.user_roles where username=?  " />
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+	<bean id="bcryptPasswordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+		<constructor-arg name="strength" value="10" />
+	</bean>
+	
+	<!-- PostgreSQL dataSource configuration -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url" value="jdbc:postgresql://localhost:5432/esh_document_repository" />
+		<property name="username" value="postgres" />
+		<property name="password" value="postgres" />
+	</bean>
+</beans>
