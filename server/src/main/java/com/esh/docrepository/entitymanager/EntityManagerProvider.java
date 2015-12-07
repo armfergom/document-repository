@@ -6,7 +6,7 @@ import javax.persistence.Persistence;
 /**
  * Entity manager provider that implements the singleton pattern to return the EntityManager
  * 
- * @author armandofernandez
+ * @author armfergom
  *
  */
 public class EntityManagerProvider {

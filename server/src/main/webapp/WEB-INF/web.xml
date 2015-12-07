@@ -25,6 +25,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			WEB-INF/spring-security.xml
+			WEB-INF/spring-security-beans.xml
 		</param-value>
 	</context-param>
 
