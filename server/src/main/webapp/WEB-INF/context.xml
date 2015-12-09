@@ -24,9 +24,15 @@
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="persistenceUnitName" value="examplePU" />
+		<property name="persistenceUnitName" value="doc-repository" />
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter" />
+		</property>
+		<!-- TODO: Activate weaving. Improves performance -->
+		<property name="jpaPropertyMap">
+		  <map>
+		    <entry key="eclipselink.weaving" value="false"/>
+		  </map>
 		</property>
 	</bean>
 
@@ -42,7 +48,7 @@
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 	
 	<!-- Define the user details service bean. Load users from the database -->
-	<bean id="userDao" class="com.esh.docrepository.UserDaoImpl"/>
+	<bean id="userDao" class="com.esh.docrepository.dao.UserDaoImpl"/>
 	<!-- Define the authentication manager -->
 	<security:authentication-manager id="authenticationManager">
 		<security:authentication-provider user-service-ref="userDao">
@@ -59,22 +65,23 @@
 			entry-point-ref="unauthorizedEntryPoint"
 			authentication-manager-ref="authenticationManager">
 		<security:custom-filter ref="authenticationTokenProcessingFilter" position="FORM_LOGIN_FILTER" />
-		<security:intercept-url pattern="/rest/user/authenticate" access="permitAll" />
+		<security:intercept-url pattern="/docrepo/user/login" access="permitAll" />
 		<security:intercept-url method="GET" pattern="/docrepo/**" access="hasRole('USER_ROLE')" />
 		<security:intercept-url method="PUT" pattern="/docrepo/**" access="hasRole('ADMIN_ROLE')" />
 		<security:intercept-url method="POST" pattern="/docrepo/**" access="hasRole('ADMIN_ROLE')" />
 		<security:intercept-url method="DELETE" pattern="/docrepo/**" access="hasRole('ADMIN_ROLE')" />
 	</security:http>
 	
-	<!-- Entry point to avoid the login page redirection -->
+	<!-- Entry point to avoid the login page redirection. Called when the user has not been authenticated in authenticationTokenProcessingFilter -->
 	<bean id="unauthorizedEntryPoint" class="com.esh.docrepository.security.UnauthorizedEntryPoint" />
 
-	<!-- Entry point to avoid the login page redirection -->
+	<!-- Authenticates the user in each request -->
 	<bean  id="authenticationTokenProcessingFilter" class="com.esh.docrepository.security.AuthenticationTokenProcessingFilter">
 		<constructor-arg ref="userDao" />
 	</bean>
 	
 	<!-- BEAN SCAN-->
 	<context:component-scan base-package="com.esh.docrepository.resources" />
+	<context:component-scan base-package="com.esh.docrepository.dao" />
 	
 </beans>

@@ -7,5 +7,4 @@
 		<!-- Entities -->
 		<class>com.esh.docrepository.model.Student</class>
 	</persistence-unit>
-	
 </persistence>

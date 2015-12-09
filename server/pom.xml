@@ -94,6 +94,11 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-orm</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
 
 		<!-- Spring security -->
 		<dependency>
@@ -111,13 +116,12 @@
 			<artifactId>spring-security-config</artifactId>
 			<version>${spring.security.version}</version>
 		</dependency>
-
 	</dependencies>
 	<properties>
 		<jersey.version>2.5.1</jersey.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.security.version>4.0.3.RELEASE</spring.security.version>
-		<spring.version>4.1.0.RELEASE</spring.version>
+		<spring.version>4.2.3.RELEASE</spring.version>
 		<jackson.version>2.6.3</jackson.version>
 	</properties>
 </project>
