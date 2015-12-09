@@ -2,7 +2,7 @@ package com.esh.docrepository.dao;
 
 import com.esh.docrepository.model.Student;
 
-public class StudentDaoImpl extends AbstractDao<Student>implements StudentDao {
+public class StudentDaoImpl extends AbstractDao<Student> implements StudentDao {
 
     public StudentDaoImpl() {
         super(Student.class);
