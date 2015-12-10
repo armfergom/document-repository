@@ -66,10 +66,10 @@
 			authentication-manager-ref="authenticationManager">
 		<security:custom-filter ref="authenticationTokenProcessingFilter" position="FORM_LOGIN_FILTER" />
 		<security:intercept-url pattern="/docrepo/user/login" access="permitAll" />
-		<security:intercept-url method="GET" pattern="/docrepo/**" access="hasRole('USER_ROLE')" />
-		<security:intercept-url method="PUT" pattern="/docrepo/**" access="hasRole('ADMIN_ROLE')" />
-		<security:intercept-url method="POST" pattern="/docrepo/**" access="hasRole('ADMIN_ROLE')" />
-		<security:intercept-url method="DELETE" pattern="/docrepo/**" access="hasRole('ADMIN_ROLE')" />
+		<security:intercept-url method="GET" pattern="/docrepo/myresource/**" access="hasRole('USER_ROLE')" />
+		<security:intercept-url method="PUT" pattern="/docrepo/myresource/**" access="hasRole('ADMIN_ROLE')" />
+		<security:intercept-url method="POST" pattern="/docrepo/myresource/**" access="hasRole('ADMIN_ROLE')" />
+		<security:intercept-url method="DELETE" pattern="/docrepo/myresource/**" access="hasRole('ADMIN_ROLE')" />
 	</security:http>
 	
 	<!-- Entry point to avoid the login page redirection. Called when the user has not been authenticated in authenticationTokenProcessingFilter -->
