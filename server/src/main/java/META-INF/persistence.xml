@@ -6,5 +6,7 @@
 	<persistence-unit name="doc-repository" transaction-type="RESOURCE_LOCAL">
 		<!-- Entities -->
 		<class>com.esh.docrepository.model.Student</class>
+		<class>com.esh.docrepository.model.Role</class>
+		<class>com.esh.docrepository.model.User</class>
 	</persistence-unit>
 </persistence>
