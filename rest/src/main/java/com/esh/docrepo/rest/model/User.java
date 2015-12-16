@@ -10,12 +10,17 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-@Entity(name = "authentication.users")
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
+@Table(schema = "authentication", name = "users")
 public class User implements UserDetails {
 
     private static final long serialVersionUID = -7990239766408041770L;
@@ -25,8 +30,12 @@ public class User implements UserDetails {
     private String password;
     private Boolean enabled;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<Role> roles;
+
+    @Transient
+    private long expires;
 
     public User() {}
 
@@ -83,6 +92,18 @@ public class User implements UserDetails {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public long getExpires() {
+        return expires;
+    }
+
+    public void setExpires(long expires) {
+        this.expires = expires;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
     }
 
     public List<Role> getRoles() {
